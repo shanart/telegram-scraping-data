@@ -46,7 +46,6 @@ class DateTimeEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 async def dump_all_messages(channel, channel_name):
-    """Записывает json-файл с информацией о всех сообщениях канала/чата"""
     offset_msg = 50
     limit_msg = 100
 
