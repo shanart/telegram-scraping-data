@@ -14,23 +14,17 @@ from channels import channels
 """
 
 from telethon.sync import TelegramClient
-# from telethon import connection
 
-# для корректного переноса времени сообщений в json
 from datetime import date, datetime, timedelta
 
-# классы для работы с каналами
 from telethon.tl.functions.channels import GetParticipantsRequest
 from telethon.tl.types import ChannelParticipantsSearch
 
-# класс для работы с сообщениями
 from telethon.tl.functions.messages import GetHistoryRequest
 
-# Считываем учетные данные
 config = configparser.ConfigParser()
 config.read("config.ini")
 
-# Присваиваем значения внутренним переменным
 api_id = config['Telegram']['api_id']
 api_hash = config['Telegram']['api_hash']
 username = config['Telegram']['username']
@@ -43,7 +37,6 @@ offset_date = date_now - timedelta(days=1)
 client.start()
 
 class DateTimeEncoder(json.JSONEncoder):
-    '''Класс для сериализации записи дат в JSON'''
 
     def default(self, o):
         if isinstance(o, datetime):
@@ -54,12 +47,12 @@ class DateTimeEncoder(json.JSONEncoder):
 
 async def dump_all_messages(channel, channel_name):
     """Записывает json-файл с информацией о всех сообщениях канала/чата"""
-    offset_msg = 50    # номер записи, с которой начинается считывание
-    limit_msg = 100   # максимальное число записей, передаваемых за один раз
+    offset_msg = 50
+    limit_msg = 100
 
-    all_messages = []   # список всех сообщений
+    all_messages = []
     total_messages = 0
-    total_count_limit = 10  # поменяйте это значение, если вам нужны не все сообщения
+    total_count_limit = 10
 
     messages = []
 
