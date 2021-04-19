@@ -3,7 +3,6 @@ import datetime
 import configparser
 import json
 
-
 from channels import channels
 """
 {
@@ -13,8 +12,6 @@ from channels import channels
     "title": <str:title>
 }
 """
-
-
 
 from telethon.sync import TelegramClient
 # from telethon import connection
